@@ -21,7 +21,18 @@ def fund_list_str2fmt_data(raw_str):
     suffix = ";"
     json_str = raw_str[len(prefix): len(raw_str) - len(suffix)]
     fmt_data = json.loads(json_str)
-    return fmt_data
+    print("totally %d funds found" %(len(fmt_data)))
+
+    # we just need the ones we are intereseted in....
+
+    valid_data = []
+
+    for i in fmt_data:
+        if i[0] == '000001' or i[0] == '288002' or i[0] == '270041' or i[0] == '202023':
+            print(i)
+            valid_data.append(i)
+
+    return valid_data
 
 
 def fund_list2dict_list(fund_list):
@@ -63,6 +74,7 @@ def _get_fund_list():
     raw_fund_list = r.content.decode("utf-8")
     with open("./output/fund_list/raw.txt", "w", encoding='utf-8') as fp:
         fp.write(raw_fund_list)
+
     print("get fund raw list: %s..." % raw_fund_list[:100])
     fund_list = fund_list_str2fmt_data(raw_fund_list)
     return fund_list

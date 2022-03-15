@@ -6,9 +6,17 @@ from fund_info import FuncInfo
 import os
 from p_tqdm import p_umap
 import time
+import datetime
 
 csv_data_dir = "./output/csv_data"
-start_date, end_date = "2015-01-01", time.strftime("%Y-%m-%d", time.localtime())
+
+#start_date, end_date = "2021-03-14", time.strftime("%Y-%m-%d", time.localtime())
+start_date, end_date = (datetime.datetime.now() - datetime.timedelta(days = 2)).strftime("%Y-%m-%d"), (datetime.datetime.now() - datetime.timedelta(days = 1)).strftime("%Y-%m-%d")
+
+print(start_date)
+print(end_date)
+
+#start_date, end_date = "2021-03-14", time.strftime("%Y-%m-%d", time.localtime())
 
 
 def get_fund(fund):
